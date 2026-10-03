@@ -12,18 +12,18 @@
     <header class="site-header story-header">
         <a class="brand" href="NN.html">Nuestra historia &#9825;</a>
         <nav class="site-navigation">
-            <a class="header-link explore-story-link" href="explorar.html">Explorar historia <span aria-hidden="true">âœ¦</span></a>
-            <a class="header-link story-return-link" href="NN.html"><span class="story-return-icon" aria-hidden="true">â†¶</span><span><strong>Volver a nuestra historia</strong><small>Siempre hay un lugar para nosotros</small></span></a>
+            <a class="header-link explore-story-link" href="explorar.html">Explorar historia <span aria-hidden="true">✦</span></a>
+            <a class="header-link story-return-link" href="NN.html"><span class="story-return-icon" aria-hidden="true">↶</span><span><strong>Volver a nuestra historia</strong><small>Siempre hay un lugar para nosotros</small></span></a>
         </nav>
     </header>
     <main class="wrap narrow support-journey">
         <div class="chapter-top support-intro">
             <span class="chapter-number">Un lugar seguro en nuestra historia</span>
             <h1>Si necesitas algo</h1>
-            <p class="lede">Un camino hecho para ti: mÃºsica, recuerdos, una carta y nuestros videos.</p>
+            <p class="lede">Un camino hecho para ti: música, recuerdos, una carta y nuestros videos.</p>
         </div>
-        <nav class="support-progress" aria-label="Pasos de este rincÃ³n">
-            <button type="button" class="support-progress-step is-current" data-step-nav="1" aria-current="step"><span>01</span><span>La canciÃ³n</span></button>
+        <nav class="support-progress" aria-label="Pasos de este rincón">
+            <button type="button" class="support-progress-step is-current" data-step-nav="1" aria-current="step"><span>01</span><span>La canción</span></button>
             <span class="support-progress-line" aria-hidden="true"></span>
             <button type="button" class="support-progress-step" data-step-nav="2" disabled><span>02</span><span>Tu momento</span></button>
             <span class="support-progress-line" aria-hidden="true"></span>
@@ -34,92 +34,92 @@
 
         <section class="support-step" id="supportStep1" data-support-step="1" aria-labelledby="musicStepTitle">
             <div class="audio-card support-audio">
-                <span class="chapter-number">Paso uno Â· QuÃ©date un momento</span>
-                <h2 id="musicStepTitle">Una melodÃ­a para acompaÃ±arte</h2>
+                <span class="chapter-number">Paso uno · Quédate un momento</span>
+                <h2 id="musicStepTitle">Una melodía para acompañarte</h2>
                 <button class="support-hero-photo" id="supportMusicPhotoButton" type="button" aria-label="Abrir este recuerdo">
-                    <img id="supportMusicPhoto" src="" alt="Un recuerdo nuestro para acompaÃ±ar la canciÃ³n">
-                    <span>Un recuerdo para ti â™¡</span>
+                    <img id="supportMusicPhoto" src="" alt="Un recuerdo nuestro para acompañar la canción">
+                    <span>Un recuerdo para ti ♡</span>
                 </button>
-                <button class="music-toggle" id="toggleMusic" type="button" data-play-label="â–¶ Reproducir la canciÃ³n" data-pause-label="âšâš Pausar la canciÃ³n">â–¶ Reproducir la canciÃ³n</button>
+                <button class="music-toggle" id="toggleMusic" type="button" data-play-label="▶ Reproducir la canción" data-pause-label="❚❚ Pausar la canción">▶ Reproducir la canción</button>
                 <audio controls preload="auto" data-autoplay-section>
                     <source src="si%20necesitas%20algo.mpeg" type="audio/mpeg">
                     Tu navegador no puede reproducir este audio.
                 </audio>
-                <p class="audio-status" id="audioStatus" aria-live="polite">Una melodÃ­a para este momento.</p>
-                <button class="button support-next-step" id="startSupportJourney" type="button">Continuar a mi cartita <span aria-hidden="true">â†’</span></button>
+                <p class="audio-status" id="audioStatus" aria-live="polite">Una melodía para este momento.</p>
+                <button class="button support-next-step" id="startSupportJourney" type="button">Continuar a mi cartita <span aria-hidden="true">→</span></button>
             </div>
         </section>
 
         <section class="support-step" id="supportStep2" data-support-step="2" aria-labelledby="supportTitle" hidden>
             <div class="panel support-messages">
                 <div class="chapter-top">
-                    <span class="chapter-number">Paso dos Â· Escoge con el corazÃ³n</span>
+                    <span class="chapter-number">Paso dos · Escoge con el corazón</span>
                     <h2 id="supportTitle">Una cartita para este momento</h2>
-                    <p class="lede">Elige lo que sientes. AbrirÃ© una de nuestras cien frases y dos recuerdos solo para ti.</p>
+                    <p class="lede">Elige lo que sientes. Abriré una de nuestras cien frases y dos recuerdos solo para ti.</p>
                 </div>
-                <div class="mood-grid" id="moodPicker" role="group" aria-label="Elige cÃ³mo te sientes">
-                    <button class="mood-button" type="button" data-mood="0" aria-pressed="false"><span class="mood-icon" aria-hidden="true">â˜</span><span class="mood-copy"><strong>Hoy me pesa el corazÃ³n</strong><small>Un lugar suave para soltar el dÃ­a</small></span><span class="mood-arrow" aria-hidden="true">â†—</span></button>
-                    <button class="mood-button" type="button" data-mood="1" aria-pressed="false"><span class="mood-icon" aria-hidden="true">â™¡</span><span class="mood-copy"><strong>Me hace falta un abrazo</strong><small>Te guardÃ© uno larguito</small></span><span class="mood-arrow" aria-hidden="true">â†—</span></button>
-                    <button class="mood-button" type="button" data-mood="2" aria-pressed="false"><span class="mood-icon" aria-hidden="true">âœ‰</span><span class="mood-copy"><strong>Te extraÃ±o</strong><small>Vuelve un momento a lo nuestro</small></span><span class="mood-arrow" aria-hidden="true">â†—</span></button>
-                    <button class="mood-button" type="button" data-mood="3" aria-pressed="false"><span class="mood-icon" aria-hidden="true">âœ¦</span><span class="mood-copy"><strong>Dudo de mÃ­</strong><small>DÃ©jame recordarte cÃ³mo te veo</small></span><span class="mood-arrow" aria-hidden="true">â†—</span></button>
-                    <button class="mood-button" type="button" data-mood="4" aria-pressed="false"><span class="mood-icon" aria-hidden="true">â˜¾</span><span class="mood-copy"><strong>Estoy cansada</strong><small>AquÃ­ puedes bajar el ritmo</small></span><span class="mood-arrow" aria-hidden="true">â†—</span></button>
-                    <button class="mood-button" type="button" data-mood="5" aria-pressed="false"><span class="mood-icon" aria-hidden="true">â˜¼</span><span class="mood-copy"><strong>Necesito reÃ­r</strong><small>Busquemos una chispa juntas</small></span><span class="mood-arrow" aria-hidden="true">â†—</span></button>
-                    <button class="mood-button" type="button" data-mood="6" aria-pressed="false"><span class="mood-icon" aria-hidden="true">âŒ‚</span><span class="mood-copy"><strong>Quiero sentirte cerca</strong><small>Nuestros recuerdos te acompaÃ±an</small></span><span class="mood-arrow" aria-hidden="true">â†—</span></button>
-                    <button class="mood-button" type="button" data-mood="7" aria-pressed="false"><span class="mood-icon" aria-hidden="true">â˜</span><span class="mood-copy"><strong>Quiero que me escuches</strong><small>Hay espacio para todo lo que sientes</small></span><span class="mood-arrow" aria-hidden="true">â†—</span></button>
-                    <button class="mood-button" type="button" data-mood="8" aria-pressed="false"><span class="mood-icon" aria-hidden="true">â‹</span><span class="mood-copy"><strong>Me siento sola</strong><small>Ven, me quedo contigo un ratito</small></span><span class="mood-arrow" aria-hidden="true">â†—</span></button>
-                    <button class="mood-button" type="button" data-mood="9" aria-pressed="false"><span class="mood-icon" aria-hidden="true">â™¡</span><span class="mood-copy"><strong>Solo porque sÃ­</strong><small>Una cartita bonita para ti</small></span><span class="mood-arrow" aria-hidden="true">â†—</span></button>
+                <div class="mood-grid" id="moodPicker" role="group" aria-label="Elige cómo te sientes">
+                    <button class="mood-button" type="button" data-mood="0" aria-pressed="false"><span class="mood-icon" aria-hidden="true">☁</span><span class="mood-copy"><strong>Hoy me pesa el corazón</strong><small>Un lugar suave para soltar el día</small></span><span class="mood-arrow" aria-hidden="true">↗</span></button>
+                    <button class="mood-button" type="button" data-mood="1" aria-pressed="false"><span class="mood-icon" aria-hidden="true">♡</span><span class="mood-copy"><strong>Me hace falta un abrazo</strong><small>Te guardé uno larguito</small></span><span class="mood-arrow" aria-hidden="true">↗</span></button>
+                    <button class="mood-button" type="button" data-mood="2" aria-pressed="false"><span class="mood-icon" aria-hidden="true">✉</span><span class="mood-copy"><strong>Te extraño</strong><small>Vuelve un momento a lo nuestro</small></span><span class="mood-arrow" aria-hidden="true">↗</span></button>
+                    <button class="mood-button" type="button" data-mood="3" aria-pressed="false"><span class="mood-icon" aria-hidden="true">✦</span><span class="mood-copy"><strong>Dudo de mí</strong><small>Déjame recordarte cómo te veo</small></span><span class="mood-arrow" aria-hidden="true">↗</span></button>
+                    <button class="mood-button" type="button" data-mood="4" aria-pressed="false"><span class="mood-icon" aria-hidden="true">☾</span><span class="mood-copy"><strong>Estoy cansada</strong><small>Aquí puedes bajar el ritmo</small></span><span class="mood-arrow" aria-hidden="true">↗</span></button>
+                    <button class="mood-button" type="button" data-mood="5" aria-pressed="false"><span class="mood-icon" aria-hidden="true">☼</span><span class="mood-copy"><strong>Necesito reír</strong><small>Busquemos una chispa juntas</small></span><span class="mood-arrow" aria-hidden="true">↗</span></button>
+                    <button class="mood-button" type="button" data-mood="6" aria-pressed="false"><span class="mood-icon" aria-hidden="true">⌂</span><span class="mood-copy"><strong>Quiero sentirte cerca</strong><small>Nuestros recuerdos te acompañan</small></span><span class="mood-arrow" aria-hidden="true">↗</span></button>
+                    <button class="mood-button" type="button" data-mood="7" aria-pressed="false"><span class="mood-icon" aria-hidden="true">☏</span><span class="mood-copy"><strong>Quiero que me escuches</strong><small>Hay espacio para todo lo que sientes</small></span><span class="mood-arrow" aria-hidden="true">↗</span></button>
+                    <button class="mood-button" type="button" data-mood="8" aria-pressed="false"><span class="mood-icon" aria-hidden="true">❋</span><span class="mood-copy"><strong>Me siento sola</strong><small>Ven, me quedo contigo un ratito</small></span><span class="mood-arrow" aria-hidden="true">↗</span></button>
+                    <button class="mood-button" type="button" data-mood="9" aria-pressed="false"><span class="mood-icon" aria-hidden="true">♡</span><span class="mood-copy"><strong>Solo porque sí</strong><small>Una cartita bonita para ti</small></span><span class="mood-arrow" aria-hidden="true">↗</span></button>
                 </div>
                 <div class="support-response" id="supportResponse" hidden>
                     <p class="eyebrow" id="messageCategory">Una carta para ti</p>
                     <blockquote class="comfort-card"><p class="comfort-message" id="comfortMessage" aria-live="polite" tabindex="-1"></p></blockquote>
-                    <div class="support-memory-pair" id="supportMemoryPair" aria-label="Dos recuerdos para acompaÃ±arte"></div>
+                    <div class="support-memory-pair" id="supportMemoryPair" aria-label="Dos recuerdos para acompañarte"></div>
                     <div class="message-actions">
                         <button class="soft-button" type="button" id="chooseAnotherMood">Elegir otro momento</button>
-                        <button class="soft-button" type="button" id="nextMessage">Otra frase para mÃ­ &#9825;</button>
-                        <button class="button" type="button" id="openSupportLetter">Leer mi carta larga <span aria-hidden="true">â†’</span></button>
+                        <button class="soft-button" type="button" id="nextMessage">Otra frase para mí &#9825;</button>
+                        <button class="button" type="button" id="openSupportLetter">Leer mi carta larga <span aria-hidden="true">→</span></button>
                     </div>
-                    <p class="library-count" id="messageCount">0 de 100 mensajes leÃ­dos</p>
+                    <p class="library-count" id="messageCount">0 de 100 mensajes leídos</p>
                 </div>
-                <button class="soft-button support-back" type="button" data-step-nav="1">â† Volver a la canciÃ³n</button>
+                <button class="soft-button support-back" type="button" data-step-nav="1">← Volver a la canción</button>
             </div>
         </section>
 
         <section class="support-step support-letter-stage" id="supportStep3" data-support-step="3" aria-labelledby="longLetterTitle" hidden>
             <div class="long-support-heading">
-                <span class="chapter-number">Paso tres Â· Una carta solo para ti</span>
+                <span class="chapter-number">Paso tres · Una carta solo para ti</span>
                 <h2 id="letterStepHeading">Cuando quieras sentirme cerca</h2>
-                <p>Esta carta es para lo que elegiste y para el corazÃ³n con el que llegaste hasta aquÃ­.</p>
+                <p>Esta carta es para lo que elegiste y para el corazón con el que llegaste hasta aquí.</p>
             </div>
             <div class="long-memory-scene">
                 <div class="long-memory-collage" id="supportCollage" aria-label="Recuerdos nuestros alrededor de la carta"></div>
                 <article class="long-letter-card">
                     <p class="eyebrow" id="longLetterMood">Para cuando lo necesites</p>
-                    <h3 id="longLetterTitle">Mi amor, aquÃ­ estoy</h3>
+                    <h3 id="longLetterTitle">Mi amor, aquí estoy</h3>
                     <div class="long-letter-copy" id="longLetterBody" aria-live="polite"></div>
                     <div class="signature">Con todo mi amor, siempre.</div>
                 </article>
             </div>
             <div class="collage-actions">
-                <p id="collageCaption" aria-live="polite">Un puÃ±ado de momentos nuestros, escogidos para ti.</p>
+                <p id="collageCaption" aria-live="polite">Un puñado de momentos nuestros, escogidos para ti.</p>
                 <button class="soft-button" id="shuffleCollage" type="button">Cambiar nuestros recuerdos &#10024;</button>
             </div>
             <div class="message-actions support-letter-actions">
-                <button class="soft-button" type="button" data-step-nav="2">â† Volver a mi frase</button>
-                <button class="button" type="button" id="openSupportVideos">Ver nuestros videos <span aria-hidden="true">â–¶</span></button>
+                <button class="soft-button" type="button" data-step-nav="2">← Volver a mi frase</button>
+                <button class="button" type="button" id="openSupportVideos">Ver nuestros videos <span aria-hidden="true">▶</span></button>
                 <button class="button" type="button" id="restartSupportJourney">Volver al comienzo &#9825;</button>
             </div>
         </section>
 
         <section class="support-step support-video-stage" id="supportStep4" data-support-step="4" aria-labelledby="videoGalleryTitle" hidden>
             <div class="long-support-heading">
-                <span class="chapter-number">Paso cuatro Â· Nuestros instantes en movimiento</span>
+                <span class="chapter-number">Paso cuatro · Nuestros instantes en movimiento</span>
                 <h2 id="videoGalleryTitle">Vuelve a vivirlos</h2>
-                <p>PequeÃ±os videos de nuestra historia, guardados para poder regresar a ellos cuando quieras.</p>
+                <p>Pequeños videos de nuestra historia, guardados para poder regresar a ellos cuando quieras.</p>
             </div>
             <p class="video-count" id="supportVideoCount" aria-live="polite">Recuerdos en video</p>
             <div class="support-video-grid" id="supportVideoGrid" aria-label="Videos de nuestros recuerdos"></div>
             <div class="message-actions support-letter-actions">
-                <button class="soft-button" type="button" data-step-nav="3">â† Volver a mi carta</button>
+                <button class="soft-button" type="button" data-step-nav="3">← Volver a mi carta</button>
                 <button class="button" type="button" id="restartSupportFromVideos">Volver al comienzo &#9825;</button>
             </div>
         </section>
@@ -127,27 +127,27 @@
         <dialog class="support-lightbox" id="supportLightbox" aria-label="Un recuerdo nuestro">
             <div class="lightbox-top">
                 <span class="chapter-number" id="supportPhotoCounter"></span>
-                <button class="lightbox-close" id="closeSupportPhoto" type="button" aria-label="Cerrar fotografÃ­a">Ã—</button>
+                <button class="lightbox-close" id="closeSupportPhoto" type="button" aria-label="Cerrar fotografía">×</button>
             </div>
             <div class="lightbox-frame"><img id="supportPhotoLarge" src="" alt="Un recuerdo nuestro"></div>
             <div class="lightbox-controls">
-                <button type="button" id="previousSupportPhoto">â† Anterior</button>
-                <button type="button" id="nextSupportPhoto">Siguiente â†’</button>
+                <button type="button" id="previousSupportPhoto">← Anterior</button>
+                <button type="button" id="nextSupportPhoto">Siguiente →</button>
             </div>
         </dialog>
         <dialog class="support-video-lightbox" id="supportVideoDialog" aria-labelledby="supportVideoTitle">
             <div class="lightbox-top">
                 <span class="chapter-number" id="supportVideoTitle">Un instante nuestro</span>
-                <button class="lightbox-close" id="closeSupportVideo" type="button" aria-label="Cerrar video">Ã—</button>
+                <button class="lightbox-close" id="closeSupportVideo" type="button" aria-label="Cerrar video">×</button>
             </div>
             <video id="supportVideoPlayer" controls playsinline preload="none"></video>
             <p class="lightbox-caption" id="supportVideoCaption"></p>
         </dialog>
     </main>
-    <footer class="site-footer">AquÃ­ tienes un lugar en el que siempre puedes volver a ser tÃº &#9825;</footer>
+    <footer class="site-footer">Aquí tienes un lugar en el que siempre puedes volver a ser tú &#9825;</footer>
     <script src="mensajes.js" defer></script>
     <script src="recuerdos.js" defer></script>
-    <script src="videos-apoyo.js?v=qr-30" defer></script>
+    <script src="videos-apoyo.js?v=qr-30-utf8" defer></script>
     <script src="apoyo.js" defer></script>
     <script src="app.js" defer></script>
 </body>
