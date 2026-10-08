@@ -1,4 +1,3 @@
-```javascript
 (() => {
     const photos = window.monthTwoPhotos || [];
     const mosaic = document.getElementById('memoryMosaic');
@@ -521,4 +520,4 @@
     renderMosaic();
 
 })();
-```
+
