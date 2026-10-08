@@ -1,3 +1,4 @@
+```javascript
 (() => {
     const photos = window.monthTwoPhotos || [];
     const mosaic = document.getElementById('memoryMosaic');
@@ -22,7 +23,8 @@
         !closeButton
     ) {
         if (mosaic) {
-            mosaic.textContent = 'No se encontraron fotos para este capítulo.';
+            mosaic.textContent =
+                'No se encontraron fotos para este capítulo.';
         }
         return;
     }
@@ -31,22 +33,38 @@
     let selectedDate = 'all';
     let visibleCount = pageSize;
     let current = 0;
+
     const favorites = new Set();
     let touchStartX = null;
 
     function filteredPhotos() {
         return selectedDate === 'all'
             ? photos
-            : photos.filter(photo => photo.dateKey === selectedDate);
+            : photos.filter(
+                photo => photo.dateKey === selectedDate
+            );
     }
 
-    // Se mantiene para que los filtros por fecha sigan funcionando.
+    /*
+     * Esta función sigue existiendo porque se utiliza
+     * internamente para identificar las fechas y mantener
+     * el filtro funcionando.
+     *
+     * La fecha NO se muestra sobre las fotografías.
+     */
     function dateLabel(photo) {
-        if (!photo.dateKey) return 'Fecha sin identificar';
+        if (!photo.dateKey) {
+            return 'Fecha sin identificar';
+        }
 
-        const [year, month, day] = photo.dateKey.split('-').map(Number);
+        const [year, month, day] =
+            photo.dateKey.split('-').map(Number);
 
-        return new Date(year, month - 1, day).toLocaleDateString('es-MX', {
+        return new Date(
+            year,
+            month - 1,
+            day
+        ).toLocaleDateString('es-MX', {
             day: 'numeric',
             month: 'long',
             year: 'numeric'
@@ -65,43 +83,69 @@
         filters.replaceChildren();
 
         function addFilter(label, value, count) {
-            const button = document.createElement('button');
+            const button =
+                document.createElement('button');
 
             button.type = 'button';
-            button.className =
-                `memory-filter${selectedDate === value ? ' is-selected' : ''}`;
 
-            button.textContent = `${label} · ${count}`;
+            button.className =
+                `memory-filter${
+                    selectedDate === value
+                        ? ' is-selected'
+                        : ''
+                }`;
+
+            button.textContent =
+                `${label} · ${count}`;
 
             button.setAttribute(
                 'aria-pressed',
                 String(selectedDate === value)
             );
 
-            button.addEventListener('click', () => {
-                selectedDate = value;
-                visibleCount = pageSize;
+            button.addEventListener(
+                'click',
+                () => {
+                    selectedDate = value;
+                    visibleCount = pageSize;
 
-                renderFilters();
-                renderMosaic();
-            });
+                    renderFilters();
+                    renderMosaic();
+                }
+            );
 
             filters.append(button);
         }
 
+        /*
+         * PRIMER BOTÓN
+         * Antes decía:
+         * "Todos los recuerdos"
+         *
+         * Ahora dice:
+         * "Nuestros recuerdos"
+         */
         addFilter(
-            'Todos los recuerdos',
+            'Nuestros recuerdos',
             'all',
             photos.length
         );
 
+        /*
+         * SEGUNDO FILTRO
+         * Antes mostraba automáticamente:
+         * "1 de octubre"
+         *
+         * Ahora mostrará:
+         * "Octubre Bonito"
+         */
         dates.forEach(date => {
             const group = photos.filter(
                 photo => photo.dateKey === date
             );
 
             addFilter(
-                dateLabel(group[0]),
+                'Octubre Bonito',
                 date,
                 group.length
             );
@@ -109,32 +153,48 @@
     }
 
     function openPhoto(index) {
-        const activePhotos = filteredPhotos();
-        const photo = activePhotos[index];
+        const activePhotos =
+            filteredPhotos();
+
+        const photo =
+            activePhotos[index];
 
         if (!photo) return;
 
         current = index;
 
         image.style.opacity = '.35';
+
+        /*
+         * Se mantiene la ruta original de la foto.
+         */
         image.src = photo.url;
 
-        // La fecha ya NO se muestra.
-        image.alt = 'Un instante de nuestro segundo mes';
+        /*
+         * Ya no se muestra la fecha.
+         */
+        image.alt =
+            'Un instante de nuestro segundo mes';
 
-        // La fecha ya NO se muestra debajo de la foto.
-        caption.textContent = 'Un recuerdo de nuestro segundo mes';
+        /*
+         * Texto de la foto ampliada sin fecha.
+         */
+        caption.textContent =
+            'Un recuerdo de nuestro segundo mes';
 
         counter.textContent =
             `${current + 1} de ${activePhotos.length}`;
 
-        favorite.textContent = favorites.has(photo.url)
-            ? '♥ Guardado en mis favoritos'
-            : '♡ Guardar este instante';
+        favorite.textContent =
+            favorites.has(photo.url)
+                ? '♥ Guardado en mis favoritos'
+                : '♡ Guardar este instante';
 
         favorite.setAttribute(
             'aria-pressed',
-            String(favorites.has(photo.url))
+            String(
+                favorites.has(photo.url)
+            )
         );
 
         if (!dialog.open) {
@@ -143,92 +203,137 @@
     }
 
     function move(amount) {
-        const count = filteredPhotos().length;
+        const count =
+            filteredPhotos().length;
 
         if (!count) return;
 
         current =
-            (current + amount + count) % count;
+            (
+                current +
+                amount +
+                count
+            ) % count;
 
         openPhoto(current);
     }
 
     function renderMosaic() {
-        const activePhotos = filteredPhotos();
-        const visible = activePhotos.slice(
-            0,
-            visibleCount
-        );
+        const activePhotos =
+            filteredPhotos();
+
+        const visible =
+            activePhotos.slice(
+                0,
+                visibleCount
+            );
 
         mosaic.replaceChildren();
 
-        visible.forEach((photo, index) => {
-            const button = document.createElement('button');
+        visible.forEach(
+            (photo, index) => {
+                const button =
+                    document.createElement(
+                        'button'
+                    );
 
-            button.type = 'button';
-            button.className = 'memory-card';
+                button.type = 'button';
 
-            // Sin fecha en el texto accesible.
-            button.setAttribute(
-                'aria-label',
-                'Abrir un recuerdo de nuestro segundo mes'
-            );
+                button.className =
+                    'memory-card';
 
-            const thumbnail =
-                document.createElement('img');
+                /*
+                 * Sin fecha en el texto accesible.
+                 */
+                button.setAttribute(
+                    'aria-label',
+                    'Abrir un recuerdo de nuestro segundo mes'
+                );
 
-            /*
-             * IMPORTANTE:
-             * Se conserva exactamente el sistema original
-             * de miniaturas.
-             */
-            thumbnail.src =
-                photo.thumbnail || photo.url;
+                const thumbnail =
+                    document.createElement(
+                        'img'
+                    );
 
-            thumbnail.alt = '';
-            thumbnail.loading = 'lazy';
-            thumbnail.decoding = 'async';
+                /*
+                 * IMPORTANTE:
+                 * Se mantiene el sistema original
+                 * de miniaturas.
+                 */
+                thumbnail.src =
+                    photo.thumbnail ||
+                    photo.url;
 
-            thumbnail.addEventListener(
-                'error',
-                () => {
-                    if (thumbnail.src !== photo.url) {
-                        thumbnail.src = photo.url;
+                thumbnail.alt = '';
+
+                thumbnail.loading =
+                    'lazy';
+
+                thumbnail.decoding =
+                    'async';
+
+                /*
+                 * Si la miniatura falla,
+                 * intenta abrir la foto original.
+                 */
+                thumbnail.addEventListener(
+                    'error',
+                    () => {
+                        if (
+                            thumbnail.src !==
+                            photo.url
+                        ) {
+                            thumbnail.src =
+                                photo.url;
+                        }
+                    },
+                    { once: true }
+                );
+
+                const label =
+                    document.createElement(
+                        'span'
+                    );
+
+                label.className =
+                    'memory-card-label';
+
+                /*
+                 * Sin fecha.
+                 */
+                label.textContent =
+                    'Un instante nuestro';
+
+                button.append(
+                    thumbnail,
+                    label
+                );
+
+                button.addEventListener(
+                    'click',
+                    () => {
+                        openPhoto(index);
                     }
-                },
-                { once: true }
-            );
+                );
 
-            const label =
-                document.createElement('span');
-
-            label.className =
-                'memory-card-label';
-
-            // Solo texto, sin fecha.
-            label.textContent =
-                'Un instante nuestro';
-
-            button.append(
-                thumbnail,
-                label
-            );
-
-            button.addEventListener(
-                'click',
-                () => openPhoto(index)
-            );
-
-            mosaic.append(button);
-        });
+                mosaic.append(button);
+            }
+        );
 
         moreButton.hidden =
-            visible.length >= activePhotos.length;
+            visible.length >=
+            activePhotos.length;
 
         moreButton.textContent =
-            `Descubrir más recuerdos (${activePhotos.length - visible.length} restantes)`;
+            `Descubrir más recuerdos (${
+                activePhotos.length -
+                visible.length
+            } restantes)`;
     }
 
+    /*
+     * BOTONES ANTERIOR / SIGUIENTE
+     */
     previous.addEventListener(
         'click',
         () => move(-1)
@@ -239,11 +344,17 @@
         () => move(1)
     );
 
+    /*
+     * CERRAR FOTO
+     */
     closeButton.addEventListener(
         'click',
         () => dialog.close()
     );
 
+    /*
+     * MOSTRAR MÁS FOTOS
+     */
     moreButton.addEventListener(
         'click',
         () => {
@@ -252,6 +363,9 @@
         }
     );
 
+    /*
+     * FAVORITOS
+     */
     favorite.addEventListener(
         'click',
         () => {
@@ -260,24 +374,41 @@
 
             if (!photo) return;
 
-            if (favorites.has(photo.url)) {
-                favorites.delete(photo.url);
+            if (
+                favorites.has(
+                    photo.url
+                )
+            ) {
+                favorites.delete(
+                    photo.url
+                );
             } else {
-                favorites.add(photo.url);
+                favorites.add(
+                    photo.url
+                );
             }
 
             favorite.textContent =
-                favorites.has(photo.url)
+                favorites.has(
+                    photo.url
+                )
                     ? '♥ Guardado en mis favoritos'
                     : '♡ Guardar este instante';
 
             favorite.setAttribute(
                 'aria-pressed',
-                String(favorites.has(photo.url))
+                String(
+                    favorites.has(
+                        photo.url
+                    )
+                )
             );
         }
     );
 
+    /*
+     * FOTO CARGADA
+     */
     image.addEventListener(
         'load',
         () => {
@@ -285,6 +416,9 @@
         }
     );
 
+    /*
+     * ERROR AL CARGAR FOTO
+     */
     image.addEventListener(
         'error',
         () => {
@@ -298,59 +432,93 @@
         }
     );
 
+    /*
+     * CERRAR HACIENDO CLIC FUERA DE LA FOTO
+     */
     dialog.addEventListener(
         'click',
         event => {
-            if (event.target === dialog) {
+            if (
+                event.target === dialog
+            ) {
                 dialog.close();
             }
         }
     );
 
+    /*
+     * TECLAS DEL TECLADO
+     */
     dialog.addEventListener(
         'keydown',
         event => {
-            if (event.key === 'ArrowLeft') {
+            if (
+                event.key ===
+                'ArrowLeft'
+            ) {
                 move(-1);
             }
 
-            if (event.key === 'ArrowRight') {
+            if (
+                event.key ===
+                'ArrowRight'
+            ) {
                 move(1);
             }
         }
     );
 
+    /*
+     * DESLIZAR EN CELULAR
+     */
     dialog.addEventListener(
         'touchstart',
         event => {
             touchStartX =
-                event.changedTouches[0].clientX;
+                event.changedTouches[0]
+                    .clientX;
         },
-        { passive: true }
+        {
+            passive: true
+        }
     );
 
     dialog.addEventListener(
         'touchend',
         event => {
-            if (touchStartX === null) return;
+            if (
+                touchStartX === null
+            ) {
+                return;
+            }
 
             const delta =
-                event.changedTouches[0].clientX -
+                event.changedTouches[0]
+                    .clientX -
                 touchStartX;
 
             touchStartX = null;
 
-            if (Math.abs(delta) > 45) {
+            if (
+                Math.abs(delta) > 45
+            ) {
                 move(
-                    delta > 0 ? -1 : 1
+                    delta > 0
+                        ? -1
+                        : 1
                 );
             }
         },
-        { passive: true }
+        {
+            passive: true
+        }
     );
 
+    /*
+     * INICIAR GALERÍA
+     */
     renderFilters();
     renderMosaic();
+
 })();
-
-
+```
