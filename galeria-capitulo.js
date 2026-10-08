@@ -1,4 +1,3 @@
-```js
 (() => {
     const photos = window.monthTwoPhotos || [];
     const mosaic = document.getElementById('memoryMosaic');
@@ -13,8 +12,18 @@
     const favorite = document.getElementById('favoriteMemory');
     const closeButton = document.getElementById('closeLightbox');
 
-    if (!photos.length || !mosaic || !filters || !moreButton || !dialog || !image || !closeButton) {
-        if (mosaic) mosaic.textContent = 'No se encontraron fotos para este capítulo.';
+    if (
+        !photos.length ||
+        !mosaic ||
+        !filters ||
+        !moreButton ||
+        !dialog ||
+        !image ||
+        !closeButton
+    ) {
+        if (mosaic) {
+            mosaic.textContent = 'No se encontraron fotos para este capítulo.';
+        }
         return;
     }
 
@@ -31,6 +40,7 @@
             : photos.filter(photo => photo.dateKey === selectedDate);
     }
 
+    // Se mantiene para que los filtros por fecha sigan funcionando.
     function dateLabel(photo) {
         if (!photo.dateKey) return 'Fecha sin identificar';
 
@@ -44,19 +54,34 @@
     }
 
     function renderFilters() {
-        const dates = [...new Set(photos.map(photo => photo.dateKey).filter(Boolean))];
+        const dates = [
+            ...new Set(
+                photos
+                    .map(photo => photo.dateKey)
+                    .filter(Boolean)
+            )
+        ];
+
         filters.replaceChildren();
 
         function addFilter(label, value, count) {
             const button = document.createElement('button');
+
             button.type = 'button';
-            button.className = `memory-filter${selectedDate === value ? ' is-selected' : ''}`;
+            button.className =
+                `memory-filter${selectedDate === value ? ' is-selected' : ''}`;
+
             button.textContent = `${label} · ${count}`;
-            button.setAttribute('aria-pressed', String(selectedDate === value));
+
+            button.setAttribute(
+                'aria-pressed',
+                String(selectedDate === value)
+            );
 
             button.addEventListener('click', () => {
                 selectedDate = value;
                 visibleCount = pageSize;
+
                 renderFilters();
                 renderMosaic();
             });
@@ -64,11 +89,22 @@
             filters.append(button);
         }
 
-        addFilter('Todos los recuerdos', 'all', photos.length);
+        addFilter(
+            'Todos los recuerdos',
+            'all',
+            photos.length
+        );
 
         dates.forEach(date => {
-            const group = photos.filter(photo => photo.dateKey === date);
-            addFilter(dateLabel(group[0]), date, group.length);
+            const group = photos.filter(
+                photo => photo.dateKey === date
+            );
+
+            addFilter(
+                dateLabel(group[0]),
+                date,
+                group.length
+            );
         });
     }
 
@@ -79,16 +115,18 @@
         if (!photo) return;
 
         current = index;
+
         image.style.opacity = '.35';
         image.src = photo.url;
 
-        // La fecha ya no aparece visualmente.
+        // La fecha ya NO se muestra.
         image.alt = 'Un instante de nuestro segundo mes';
 
-        // Sin fecha en la fotografía ampliada.
+        // La fecha ya NO se muestra debajo de la foto.
         caption.textContent = 'Un recuerdo de nuestro segundo mes';
 
-        counter.textContent = `${current + 1} de ${activePhotos.length}`;
+        counter.textContent =
+            `${current + 1} de ${activePhotos.length}`;
 
         favorite.textContent = favorites.has(photo.url)
             ? '♥ Guardado en mis favoritos'
@@ -99,7 +137,9 @@
             String(favorites.has(photo.url))
         );
 
-        if (!dialog.open) dialog.showModal();
+        if (!dialog.open) {
+            dialog.showModal();
+        }
     }
 
     function move(amount) {
@@ -107,13 +147,18 @@
 
         if (!count) return;
 
-        current = (current + amount + count) % count;
+        current =
+            (current + amount + count) % count;
+
         openPhoto(current);
     }
 
     function renderMosaic() {
         const activePhotos = filteredPhotos();
-        const visible = activePhotos.slice(0, visibleCount);
+        const visible = activePhotos.slice(
+            0,
+            visibleCount
+        );
 
         mosaic.replaceChildren();
 
@@ -129,106 +174,183 @@
                 'Abrir un recuerdo de nuestro segundo mes'
             );
 
-            const thumbnail = document.createElement('img');
+            const thumbnail =
+                document.createElement('img');
 
-            thumbnail.src = photo.thumbnail || photo.url;
+            /*
+             * IMPORTANTE:
+             * Se conserva exactamente el sistema original
+             * de miniaturas.
+             */
+            thumbnail.src =
+                photo.thumbnail || photo.url;
+
             thumbnail.alt = '';
             thumbnail.loading = 'lazy';
             thumbnail.decoding = 'async';
 
-            thumbnail.addEventListener('error', () => {
-                if (thumbnail.src !== photo.url) {
-                    thumbnail.src = photo.url;
-                }
-            }, { once: true });
+            thumbnail.addEventListener(
+                'error',
+                () => {
+                    if (thumbnail.src !== photo.url) {
+                        thumbnail.src = photo.url;
+                    }
+                },
+                { once: true }
+            );
 
-            const label = document.createElement('span');
+            const label =
+                document.createElement('span');
 
-            label.className = 'memory-card-label';
+            label.className =
+                'memory-card-label';
 
-            // Texto de la foto sin fecha.
-            label.textContent = 'Un instante nuestro';
+            // Solo texto, sin fecha.
+            label.textContent =
+                'Un instante nuestro';
 
-            button.append(thumbnail, label);
+            button.append(
+                thumbnail,
+                label
+            );
 
-            button.addEventListener('click', () => openPhoto(index));
+            button.addEventListener(
+                'click',
+                () => openPhoto(index)
+            );
 
             mosaic.append(button);
         });
 
-        moreButton.hidden = visible.length >= activePhotos.length;
+        moreButton.hidden =
+            visible.length >= activePhotos.length;
 
         moreButton.textContent =
             `Descubrir más recuerdos (${activePhotos.length - visible.length} restantes)`;
     }
 
-    previous.addEventListener('click', () => move(-1));
+    previous.addEventListener(
+        'click',
+        () => move(-1)
+    );
 
-    next.addEventListener('click', () => move(1));
+    next.addEventListener(
+        'click',
+        () => move(1)
+    );
 
-    closeButton.addEventListener('click', () => dialog.close());
+    closeButton.addEventListener(
+        'click',
+        () => dialog.close()
+    );
 
-    moreButton.addEventListener('click', () => {
-        visibleCount += pageSize;
-        renderMosaic();
-    });
-
-    favorite.addEventListener('click', () => {
-        const photo = filteredPhotos()[current];
-
-        if (!photo) return;
-
-        favorites.has(photo.url)
-            ? favorites.delete(photo.url)
-            : favorites.add(photo.url);
-
-        favorite.textContent = favorites.has(photo.url)
-            ? '♥ Guardado en mis favoritos'
-            : '♡ Guardar este instante';
-
-        favorite.setAttribute(
-            'aria-pressed',
-            String(favorites.has(photo.url))
-        );
-    });
-
-    image.addEventListener('load', () => {
-        image.style.opacity = '1';
-    });
-
-    image.addEventListener('error', () => {
-        image.style.opacity = '1';
-        image.alt = 'No se pudo abrir esta foto. Comprueba que ABRIR HISTORIA.bat siga ejecutándose.';
-        caption.textContent = 'No pudimos abrir esta foto. Inicia el álbum con ABRIR HISTORIA.bat.';
-    });
-
-    dialog.addEventListener('click', event => {
-        if (event.target === dialog) dialog.close();
-    });
-
-    dialog.addEventListener('keydown', event => {
-        if (event.key === 'ArrowLeft') move(-1);
-        if (event.key === 'ArrowRight') move(1);
-    });
-
-    dialog.addEventListener('touchstart', event => {
-        touchStartX = event.changedTouches[0].clientX;
-    }, { passive: true });
-
-    dialog.addEventListener('touchend', event => {
-        if (touchStartX === null) return;
-
-        const delta = event.changedTouches[0].clientX - touchStartX;
-
-        touchStartX = null;
-
-        if (Math.abs(delta) > 45) {
-            move(delta > 0 ? -1 : 1);
+    moreButton.addEventListener(
+        'click',
+        () => {
+            visibleCount += pageSize;
+            renderMosaic();
         }
-    }, { passive: true });
+    );
+
+    favorite.addEventListener(
+        'click',
+        () => {
+            const photo =
+                filteredPhotos()[current];
+
+            if (!photo) return;
+
+            if (favorites.has(photo.url)) {
+                favorites.delete(photo.url);
+            } else {
+                favorites.add(photo.url);
+            }
+
+            favorite.textContent =
+                favorites.has(photo.url)
+                    ? '♥ Guardado en mis favoritos'
+                    : '♡ Guardar este instante';
+
+            favorite.setAttribute(
+                'aria-pressed',
+                String(favorites.has(photo.url))
+            );
+        }
+    );
+
+    image.addEventListener(
+        'load',
+        () => {
+            image.style.opacity = '1';
+        }
+    );
+
+    image.addEventListener(
+        'error',
+        () => {
+            image.style.opacity = '1';
+
+            image.alt =
+                'No se pudo abrir esta foto. Comprueba que ABRIR HISTORIA.bat siga ejecutándose.';
+
+            caption.textContent =
+                'No pudimos abrir esta foto. Inicia el álbum con ABRIR HISTORIA.bat.';
+        }
+    );
+
+    dialog.addEventListener(
+        'click',
+        event => {
+            if (event.target === dialog) {
+                dialog.close();
+            }
+        }
+    );
+
+    dialog.addEventListener(
+        'keydown',
+        event => {
+            if (event.key === 'ArrowLeft') {
+                move(-1);
+            }
+
+            if (event.key === 'ArrowRight') {
+                move(1);
+            }
+        }
+    );
+
+    dialog.addEventListener(
+        'touchstart',
+        event => {
+            touchStartX =
+                event.changedTouches[0].clientX;
+        },
+        { passive: true }
+    );
+
+    dialog.addEventListener(
+        'touchend',
+        event => {
+            if (touchStartX === null) return;
+
+            const delta =
+                event.changedTouches[0].clientX -
+                touchStartX;
+
+            touchStartX = null;
+
+            if (Math.abs(delta) > 45) {
+                move(
+                    delta > 0 ? -1 : 1
+                );
+            }
+        },
+        { passive: true }
+    );
 
     renderFilters();
     renderMosaic();
 })();
-```
+
 
