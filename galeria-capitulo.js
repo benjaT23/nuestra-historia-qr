@@ -138,8 +138,8 @@
     image.addEventListener('load', () => { image.style.opacity = '1'; });
     image.addEventListener('error', () => {
         image.style.opacity = '1';
-        image.alt = 'No se pudo abrir esta foto. Comprueba que ABRIR HISTORIA.bat siga ejecutándose.';
-        caption.textContent = 'No pudimos abrir esta foto. Inicia el álbum con ABRIR HISTORIA.bat.';
+        image.alt = 'No se pudo mostrar este recuerdo.';
+        caption.textContent = 'Este recuerdo no pudo mostrarse en este momento.';
     });
     dialog.addEventListener('click', event => {
         if (event.target === dialog) dialog.close();
