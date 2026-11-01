@@ -22,4 +22,27 @@
         playButton.setAttribute('aria-label', 'Reproducir nuestro video');
     });
     video.addEventListener('ended', () => playButton.classList.remove('is-playing'));
+
+    const revealButton = document.getElementById('revealPuzzlePromise');
+    const puzzlePromise = document.getElementById('puzzlePromise');
+    if (revealButton && puzzlePromise) {
+        revealButton.addEventListener('click', () => {
+            puzzlePromise.hidden = false;
+            revealButton.classList.add('is-revealed');
+            revealButton.querySelector('strong').textContent = 'Nuestra próxima pieza está colocada';
+            revealButton.querySelector('small').textContent = 'Lo que falta lo vamos a terminar juntos';
+            puzzlePromise.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    }
+
+    const photoButton = document.getElementById('openPuzzlePhoto');
+    const puzzleLightbox = document.getElementById('puzzleLightbox');
+    const closePuzzle = document.getElementById('closePuzzlePhoto');
+    if (photoButton && puzzleLightbox && closePuzzle) {
+        photoButton.addEventListener('click', () => puzzleLightbox.showModal());
+        closePuzzle.addEventListener('click', () => puzzleLightbox.close());
+        puzzleLightbox.addEventListener('click', event => {
+            if (event.target === puzzleLightbox) puzzleLightbox.close();
+        });
+    }
 })();
