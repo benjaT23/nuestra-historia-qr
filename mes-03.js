@@ -45,4 +45,24 @@
             if (event.target === puzzleLightbox) puzzleLightbox.close();
         });
     }
+
+    const photoLightbox = document.getElementById('monthThreePhotoLightbox');
+    const lightboxImage = document.getElementById('monthThreeLightboxImage');
+    const lightboxCaption = document.getElementById('monthThreeLightboxCaption');
+    const closePhotoLightbox = document.getElementById('closeMonthThreePhoto');
+    document.querySelectorAll('.month-three-photo').forEach(photo => {
+        photo.addEventListener('click', () => {
+            if (!photoLightbox || !lightboxImage || !lightboxCaption) return;
+            lightboxImage.src = photo.dataset.photo;
+            lightboxImage.alt = photo.querySelector('img')?.alt || 'Recuerdo ampliado del tercer mes';
+            lightboxCaption.textContent = photo.dataset.caption || '';
+            photoLightbox.showModal();
+        });
+    });
+    if (photoLightbox && closePhotoLightbox) {
+        closePhotoLightbox.addEventListener('click', () => photoLightbox.close());
+        photoLightbox.addEventListener('click', event => {
+            if (event.target === photoLightbox) photoLightbox.close();
+        });
+    }
 })();

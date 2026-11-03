@@ -570,7 +570,28 @@ h3 { color: var(--wine); }
 .puzzle-lightbox-top button { width:38px; height:38px; border:1px solid var(--line); border-radius:50%; background:white; color:var(--wine); font-size:22px; cursor:pointer; }
 .puzzle-lightbox img { display:block; width:100%; max-height:70vh; object-fit:contain; border-radius:15px; background:#eee; }
 .puzzle-lightbox p { margin:13px 8px 5px; color:var(--muted); text-align:center; }
-@media (max-width:700px) { .month-three-hero { min-height:330px; } .month-three-music { grid-template-columns:1fr; text-align:center; } .month-three-music-art { width:150px; margin:auto; } .month-three-letter { width:100%; border-radius:20px 20px 48px 20px; } .month-three-seal { right:-5px; width:58px; height:58px; } .puzzle-memory { grid-template-columns:1fr; } .puzzle-photo { width:min(420px,calc(100% - 14px)); margin:8px auto 10px; } .puzzle-copy { text-align:center; } }
+.month-three-video-grid { display:grid; grid-template-columns:minmax(220px,1fr) minmax(220px,1fr); gap:22px; width:min(820px,100%); margin:auto; align-items:start; }
+.month-three-video-grid .month-three-video-frame { width:100%; }
+.month-three-new-video { min-height:100%; }
+.month-three-new-video video { max-height:520px; }
+.new-video-label { position:absolute; left:50%; bottom:22px; display:flex; align-items:center; gap:7px; border-radius:999px; padding:8px 12px; background:rgba(255,250,250,.92); color:var(--wine); box-shadow:0 8px 20px rgba(40,24,32,.18); transform:translateX(-50%); white-space:nowrap; }
+.new-video-label b { border-radius:999px; padding:3px 7px; background:#80344e; color:white; font-size:10px; text-transform:uppercase; }
+.month-three-gallery { margin:20px 0 42px; }
+.month-three-photo-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; width:min(820px,100%); margin:auto; }
+.month-three-photo { position:relative; overflow:hidden; aspect-ratio:4/5; border:7px solid white; border-radius:18px; padding:0; background:#fff; box-shadow:0 14px 34px rgba(72,42,58,.14); cursor:zoom-in; transition:transform .25s ease,box-shadow .25s ease; }
+.month-three-photo:nth-child(2n) { transform:rotate(1.4deg); }
+.month-three-photo:nth-child(3n) { transform:rotate(-1.2deg); }
+.month-three-photo:hover { z-index:2; transform:rotate(0) translateY(-5px); box-shadow:0 20px 42px rgba(72,42,58,.22); }
+.month-three-photo.wide { grid-column:span 1; }
+.month-three-photo img { display:block; width:100%; height:100%; object-fit:cover; }
+.month-three-photo span { position:absolute; right:8px; bottom:8px; border-radius:999px; padding:7px 10px; background:rgba(255,250,250,.92); color:var(--wine); font-family:'Caveat',cursive; font-size:16px; }
+.month-three-photo-lightbox { width:min(760px,calc(100% - 24px)); max-height:94vh; overflow:auto; border:1px solid rgba(255,255,255,.9); border-radius:24px; padding:14px; background:#fffaf9; box-shadow:0 25px 80px rgba(36,21,29,.28); }
+.month-three-photo-lightbox::backdrop { background:rgba(32,20,27,.78); backdrop-filter:blur(5px); }
+.month-three-lightbox-top { display:flex; align-items:center; justify-content:space-between; gap:15px; padding:5px 4px 12px; color:var(--wine); font-family:'Playfair Display',serif; font-weight:700; }
+.month-three-lightbox-top button { width:38px; height:38px; border:1px solid var(--line); border-radius:50%; background:white; color:var(--wine); font-size:22px; cursor:pointer; }
+.month-three-photo-lightbox img { display:block; width:100%; max-height:68vh; object-fit:contain; border-radius:15px; background:#eee; }
+.month-three-photo-lightbox p { margin:13px 8px 5px; color:var(--wine); text-align:center; font-family:'Caveat',cursive; font-size:22px; }
+@media (max-width:700px) { .month-three-hero { min-height:330px; } .month-three-music { grid-template-columns:1fr; text-align:center; } .month-three-music-art { width:150px; margin:auto; } .month-three-letter { width:100%; border-radius:20px 20px 48px 20px; } .month-three-seal { right:-5px; width:58px; height:58px; } .month-three-video-grid { grid-template-columns:1fr; } .month-three-photo-grid { grid-template-columns:repeat(2,1fr); } .puzzle-memory { grid-template-columns:1fr; } .puzzle-photo { width:min(420px,calc(100% - 14px)); margin:8px auto 10px; } .puzzle-copy { text-align:center; } }
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
