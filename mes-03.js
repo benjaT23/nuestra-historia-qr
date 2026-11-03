@@ -23,6 +23,14 @@
     });
     video.addEventListener('ended', () => playButton.classList.remove('is-playing'));
 
+    const newVideo = document.getElementById('monthThreeNewVideo');
+    const newVideoFrame = newVideo?.closest('.month-three-new-video');
+    if (newVideo && newVideoFrame) {
+        newVideo.addEventListener('play', () => newVideoFrame.classList.add('is-playing'));
+        newVideo.addEventListener('pause', () => newVideoFrame.classList.remove('is-playing'));
+        newVideo.addEventListener('ended', () => newVideoFrame.classList.remove('is-playing'));
+    }
+
     const revealButton = document.getElementById('revealPuzzlePromise');
     const puzzlePromise = document.getElementById('puzzlePromise');
     if (revealButton && puzzlePromise) {
